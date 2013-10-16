@@ -26,6 +26,15 @@ barclays_epdq:
   password: test
   client_id: 1234
 
+barclays_epdq_extra_plus:
+  login: merchant number
+  user: username
+  password: password
+
+be2bill:
+  login: your_test_login
+  password: your_test_password
+
 beanstream:
   login: merchant id
   user: username
@@ -65,6 +74,9 @@ card_stream:
   login: X
   password: Y
 
+card_stream_modern:
+  login: "0000992"
+
 certo_direct:
   login: 1
   password: vP6OwK3
@@ -94,6 +106,10 @@ epay:
   login: X
   password: Y
 
+evo_ca:
+  username: demo
+  password: password
+
 # Working credentials, no need to replace
 eway:
   login: '87654321'
@@ -121,6 +137,11 @@ fat_zebra:
 federated_canada:
   login: demo
   password: password
+
+finansbank:
+  login: TEST
+  password: TEST
+  client_id: TEST
 
 first_pay:
   login:
@@ -184,15 +205,34 @@ merchant_esolutions:
   login: "94100008043900000004"
   password: "gvQzgKXOTEoDzpzJzROrQQzoKLaEqxjf"
 
+merchant_one:
+  username: 'demo'
+  password: 'password'
+
 merchant_ware:
  login:
  password:
  name:
 
+merchant_ware_version_four:
+ login:
+ password:
+ name:
+
+merchant_warrior:
+  merchant_uuid: '50c5b9f0b52ea'
+  api_key: '8fr3ajm7'
+  api_passphrase: 'cymvlwgc'
+
 # Working credentials, no need to replace
 mercury:
+  login: '395347306=TOKEN'
+  password: '123TOKEN'
+
+mercury_no_tokenization:
   login: '595901'
   password: 'xyz'
+  tokenization: false
 
 metrics_global:
   login: 'demo'
@@ -226,6 +266,10 @@ moneris:
 moneris_us:
   login: monusqa002
   password: qatoken
+
+money_movers:
+  login: demo
+  password: password
 
 # Working credentials, no need to replace
 nab_transact:
@@ -303,6 +347,10 @@ payment_express:
   login: LOGIN
   password: PASSWORD
 
+paymill:
+  private_key: PRIVATE_KEY
+  public_key: PUBLIC_KEY
+
 # You can use either your API PEM file or API signature with PayPal.
 paypal_certificate:
   login: LOGIN
@@ -324,6 +372,9 @@ payway:
 pay_secure:
   login: LOGIN
   password: PASSWORD
+
+pin:
+  api_key: "I_mo9BUUUXIwXF-avcs3LA"
 
 plugnpay:
   login: LOGIN
@@ -416,7 +467,7 @@ quickpay_with_api_key:
   login: 89898978
   password: "29p61DveBZ79c3144LW61lVz1qrwk2gfAFCxPyi5sn49m3Y3IRK5M6SN5d8a68u7"
   apikey: "fB46983ZwR5dzy46A3r6ngDx7P37N5YTu1F4S9W2JKCs9v4t5L9m2Q8Mlbjpa2I1"
-  version: 6
+  version: 7
 
 quantum:
   login: X
@@ -535,12 +586,17 @@ spreedly_core:
 
 stripe:
   login:
+  fee_refund_login:
 
 trans_first:
   login: LOGIN
   password: PASSWORD
 
 transax:
+  login: transaxdemo
+  password: nelix123
+
+transnational:
   login: demo
   password: password
 
@@ -578,7 +634,7 @@ vindicia:
   password: PASSWORD
 
 webpay:
-  login: "vtUQeOtUnYr7PGCLQ96Ul4zqpDUO4sOE"
+  login: "test_secret_eHn4TTgsGguBcW764a2KA8Yd"
 
 # Working test credentials, no need to replace
 wirecard:
@@ -588,3 +644,10 @@ wirecard:
 world_pay_gateway:
   login: LOGIN
   password: PASSWORD
+
+iats_payments:
+  login: TEST88
+  password: TEST88
+
+bit_pay:
+  api_key: 'rKrahSl7WRrYeKRUhGzbvW3nBzo0jG4FPaL8uPYaoPk'

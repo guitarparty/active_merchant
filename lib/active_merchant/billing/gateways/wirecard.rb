@@ -16,7 +16,7 @@ module ActiveMerchant #:nodoc:
         'xsi:noNamespaceSchemaLocation' => 'wirecard.xsd'
       }
 
-      PERMITTED_TRANSACTIONS = %w[ AUTHORIZATION CAPTURE_AUTHORIZATION PURCHASE ]
+      PERMITTED_TRANSACTIONS = %w[ PREAUTHORIZATION CAPTURE PURCHASE ]
 
       RETURN_CODES = %w[ ACK NOK ]
 
@@ -30,7 +30,7 @@ module ActiveMerchant #:nodoc:
       VALID_PHONE_FORMAT = /\+\d{1,3}(\(?\d{3}\)?)?\d{3}-\d{4}-\d{3}/
 
       # The countries the gateway supports merchants from as 2 digit ISO country codes
-      self.supported_countries = ['DE']
+      self.supported_countries = %w(AD CY GI IM MT RO CH AT DK GR IT MC SM TR BE EE HU LV NL SK GB BG FI IS LI NO SI VA FR IL LT PL ES CZ DE IE LU PT SE)
 
       # Wirecard supports all major credit and debit cards:
       # Visa, Mastercard, American Express, Diners Club,
@@ -63,13 +63,13 @@ module ActiveMerchant #:nodoc:
       # Authorization
       def authorize(money, creditcard, options = {})
         options[:credit_card] = creditcard
-        commit(:authorization, money, options)
+        commit(:preauthorization, money, options)
       end
 
       # Capture Authorization
       def capture(money, authorization, options = {})
-        options[:authorization] = authorization
-        commit(:capture_authorization, money, options)
+        options[:preauthorization] = authorization
+        commit(:capture, money, options)
       end
 
       # Purchase
@@ -152,12 +152,13 @@ module ActiveMerchant #:nodoc:
           xml.tag! 'CC_TRANSACTION' do
             xml.tag! 'TransactionID', options[:order_id]
             case options[:action]
-            when :authorization, :purchase
+            when :preauthorization, :purchase
               add_invoice(xml, money, options)
               add_creditcard(xml, options[:credit_card])
               add_address(xml, options[:billing_address])
-            when :capture_authorization
-              xml.tag! 'GuWID', options[:authorization]
+            when :capture
+              xml.tag! 'GuWID', options[:preauthorization]
+              add_amount(xml, money)
             end
           end
         end
@@ -165,12 +166,17 @@ module ActiveMerchant #:nodoc:
 
       # Includes the payment (amount, currency, country) to the transaction-xml
       def add_invoice(xml, money, options)
-        xml.tag! 'Amount', amount(money)
+        add_amount(xml, money)
         xml.tag! 'Currency', options[:currency] || currency(money)
         xml.tag! 'CountryCode', options[:billing_address][:country]
         xml.tag! 'RECURRING_TRANSACTION' do
           xml.tag! 'Type', options[:recurring] || 'Single'
         end
+      end
+
+      # Include the amount in the transaction-xml
+      def add_amount(xml, money)
+        xml.tag! 'Amount', amount(money)
       end
 
       # Includes the credit-card data to the transaction-xml
