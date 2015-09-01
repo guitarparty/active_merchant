@@ -13,7 +13,7 @@ module ActiveMerchant #:nodoc:
         self.test_url = 'https://test.netgiro.is/securepay'
 
         mattr_accessor :production_url
-        self.production_url = 'https://www.netgiro.is/SecurePay'
+        self.production_url = 'https://securepay.netgiro.is'
 
         def self.test?
           (ActiveMerchant::Billing::Base.integration_mode == :test)
