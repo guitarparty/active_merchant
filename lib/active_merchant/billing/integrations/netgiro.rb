@@ -10,7 +10,7 @@ module ActiveMerchant #:nodoc:
         autoload :Notification, 'active_merchant/billing/integrations/netgiro/notification.rb'
 
         mattr_accessor :test_url
-        self.test_url = 'http://test.netgiro.is/user/securepay'
+        self.test_url = 'https://test.netgiro.is/securepay/'
 
         mattr_accessor :production_url
         self.production_url = 'https://securepay.netgiro.is/V1/'
