@@ -75,6 +75,12 @@ module ActiveMerchant #:nodoc:
           def format_amount(amount)
             amount.to_f.round
           end
+          
+          def card_loan(merchant_name = "", interest_free = false)
+            add_field("IsCardLoan", "1")
+            add_field("MerchantName", merchant_name)
+            add_field("IsInterestFree", interest_free ? "1" : "0")
+          end
         end
       end
     end
