@@ -10,7 +10,7 @@ module ActiveMerchant #:nodoc:
         self.test_url = 'https://testgreidslusida.valitor.is/'
 
         mattr_accessor :production_url 
-        self.production_url = 'https://greidslusida.valitor.is/'
+        self.production_url = 'https://paymentweb.valitor.is/'
         
         def self.test?
           (ActiveMerchant::Billing::Base.integration_mode == :test)
